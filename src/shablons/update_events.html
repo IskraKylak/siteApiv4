@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css" />
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.0/min/dropzone.min.css">
+	<title>Редагування події</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="top-menu">
+			<div class="top-menu_left">
+				<div class="burger">
+					<span></span>
+				</div>
+				<h1 class="top-menu_name">Панель адміністратора</h1>
+			</div>
+			<div class="top-menu_right">
+				<a href="#" class="top-menu_home">
+					<i class="fas fa-home"></i>
+				</a>
+				<div class="top-menu_right_name_item">
+					<p class="top-menu_right_name">Євген Волков</p>
+					<i class="fas fa-chevron-down">
+					</i>
+					<div class="dropdown-menu">
+						<div class="p_header">
+							<p>Мій профіль</p>
+						</div>
+						<div class="p_header">
+							<p>Вихід</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="sidebar">
+		<div class="sidebar-top">
+			<div class="sidebar_arrow">
+				<i class="fas fa-chevron-left"></i>
+			</div>
+			<div class="sidebar-top_line line"></div>
+		</div>
+		<div class="sidebar-center">
+			<a href="index.html" class="sidebar-center_item sidebar_text">
+				<i class="fas fa-address-book"></i>
+				<div>Мій профіль</div>
+			</a>
+			<!-- <div class="sidebar-center_item sidebar_text">
+            <i class="fab fa-redhat"></i>
+            Мої курси
+        </div> -->
+			<a href="mysertificate.html" class="sidebar-center_item sidebar_text">
+				<i class="fas fa-trophy"></i>
+				<div>Мої сертифікати</div>
+			</a>
+		</div>
+
+		<!-- <div class="block_sidebar_bottom sidebar_text">
+        <div class="left_sidebar">
+            <i class="fab fa-redhat"></i>
+            <i class="fas fa-tv"></i>
+        </div>
+        <div class="right_sidebar">
+            <a href="mycabinet.html">Мій кабінет</a>
+            <a href="mysertificate.html">Мої сертифікати</a>
+        </div>
+    </div> -->
+
+
+
+		<div class="sidebar-center_line line"></div>
+		<div class="sidebar-bottom">
+			<p class="sidebar-bottom_title">Керування</p>
+			<!-- <a href="update_course.html" class="sidebar-center_item sidebar_text">
+			<i class="fab fa-redhat"></i>
+			<div>Курс</div>
+		</a> -->
+			<a href="events.html" class="sidebar-center_item sidebar_text">
+				<i class="fas fa-calendar-day"></i>
+				<div>Події</div>
+			</a>
+			<a href="users.html" class="sidebar-center_item sidebar_text">
+				<i class="fas fa-user-friends"></i>
+				<div>Користувачі</div>
+			</a>
+			<a href="static.html" class="sidebar-center_item sidebar_text">
+				<i class="fas fa-signal"></i>
+				<div>Статистика</div>
+			</a>
+		</div>
+
+		<!-- <div class="sidebar-bottom">
+        <p class="sidebar-bottom_title">Керування</p>
+        <div class="block_sidebar_bottom sidebar_text">
+            <div class="left_sidebar">
+                <i class="fas fa-calendar-day"></i>
+                <i class="fas fa-user-friends"></i>
+                <i class="fas fa-signal"></i>
+            </div>
+            <div class="right_sidebar">
+                <a href="events.html">Події</a>
+                <a href="users.html">Користувачі</a>
+                <a href="static.html">Статистика</a>
+            </div>
+        </div>
+    </div> -->
+	</div>
+	<main class="main">
+		<div class="container">
+
+			<div class="profile_success">
+				<button class="back_btn" type="submit"><a href="events.html">Назад</button></a>
+			</div>
+			<h1 class="title_event">Редагування події</h1>
+
+			<div class="draft">
+				<input type="checkbox" class="checkbox" id="checkbox" />
+				<label for="checkbox">Чернетка</label>
+			</div>
+
+			<p class="dropzone_title">Мова</p>
+			<div class="radio_block radio_block1_update_evenets">
+				<div class="radio radio_item">
+					<input class="custom-radio" type="radio" id="color-1" name="color" value="indigo">
+					<label for="color-1">Український</label>
+				</div>
+
+				<div class="radio radio_item">
+					<input class="custom-radio" type="radio" id="color-2" name="color" value="red">
+					<label for="color-2">Русский</label>
+				</div>
+
+				<div class="radio radio_item">
+					<input class="custom-radio" type="radio" id="color-3" name="color" value="brown">
+					<label for="color-3">English</label>
+				</div>
+			</div>
+
+			<div class="radio_block">
+				<input type="checkbox" class="custom-checkbox" id="happy" name="happy" value="yes">
+				<label for="happy">Закрита подія</label>
+			</div>
+
+
+			<fieldset>
+				<legend>Назва події *</legend>
+				<input type="text" class="profile_input" required>
+			</fieldset>
+			<p class="dropzone_title">Подія</p>
+			<div class="radio_block radio_block1_update_evenets">
+				<div class="radio radio_item">
+					<input class="custom-radio" type="radio" id="nofree" name="color" value="indigo">
+					<label for="nofree">Платное</label>
+				</div>
+
+				<div class="radio radio_item">
+					<input class="custom-radio" type="radio" id="free" name="color" value="red">
+					<label for="free">Бесплатное</label>
+				</div>
+			</div>
+			<fieldset>
+				<legend>Вартість події *</legend>
+				<input type="text" class="profile_input" required>
+			</fieldset>
+
+			<textarea class="event_desc events_textarea">Next, use our Get Started docs to setup Tiny!</textarea>
+
+			<fieldset>
+				<legend>Дати проведення події (Початок)</legend>
+				<input type="date" class="profile_input">
+			</fieldset>
+
+			<fieldset>
+				<legend>Дати проведення події (Кінець)</legend>
+				<input type="date" class="profile_input">
+			</fieldset>
+
+			<fieldset>
+				<legend>Дата закриття доступу до тестування</legend>
+				<input type="date" class="profile_input">
+			</fieldset>
+
+			<p class="dropzone_title">Файл для події</p>
+			<form class="dropzone dz-clickable dropzone_event" action="upload.php" enctype='multipart/form-data'>
+				<div class="cloud_dropzone">
+					<i class="fa fa-cloud-upload element"></i>
+				</div>
+				<input type="hidden" name="filenameEmail" class="filenameEmail" value="">
+				<input type="hidden" name="side" value="front">
+			</form>
+			<p class="dropzone_title">Зображення для сторінки події</p>
+			<form class="dropzone dz-clickable dropzone_event" action="upload.php" enctype='multipart/form-data'>
+				<div class="cloud_dropzone">
+					<i class="fa fa-cloud-upload element"></i>
+				</div>
+				<input type="hidden" name="filenameEmail" class="filenameEmail" value="">
+				<input type="hidden" name="side" value="front">
+			</form>
+
+
+
+			<fieldset>
+				<legend>Холл А</legend>
+				<input type="text" class="profile_input">
+			</fieldset>
+			<fieldset>
+				<legend>Холл Б</legend>
+				<input type="text" class="profile_input">
+			</fieldset>
+			<fieldset>
+				<legend>Балів за подію</legend>
+				<input type="text" class="profile_input">
+			</fieldset>
+
+			<fieldset>
+				<legend>Процент правильних відповідей для проходження тесту</legend>
+				<input type="text" class="profile_input">
+			</fieldset>
+
+			<fieldset>
+				<legend>Кількість спроб пройти тестування (0 - безліч)</legend>
+				<input type="text" class="profile_input">
+			</fieldset>
+
+			<textarea class="event_desc events_textarea">Next, use our Get Started docs to setup Tiny!</textarea>
+
+			<fieldset>
+				<legend>Кількість спроб пройти тестування (0 - безліч)</legend>
+				<input type="text" class="profile_input">
+			</fieldset>
+			<fieldset>
+				<legend>Максимальна кількість глядачів</legend>
+				<input type="number" class="profile_input">
+			</fieldset>
+			<form class="dropzone dz-clickable dropzone_event" action="upload.php" enctype='multipart/form-data'>
+				<div class="cloud_dropzone">
+					<i class="fa fa-cloud-upload element"></i>
+				</div>
+				<input type="hidden" name="filenameEmail" class="filenameEmail" value="">
+				<input type="hidden" name="side" value="front">
+			</form>
+
+			<div class="profile_success success_file">
+				<button class="profile_btn" type="submit">Зберегти</button>
+			</div>
+
+			<div class="update_block">
+				<button class="back_btn">Редагування тесту до події</button>
+				<button class="back_btn">Редагувати опитування</button>
+			</div>
+
+			<h1 class="title_update_table_events">Список партнеров</h1>
+			<table id="table_id1" class="display ">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Назва</th>
+						<th>Порядок</th>
+						<th>Дії</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>МІЖНАРОДНИЙ САМІТ СУЧАСНИХ ПІДХОДІВ ЛІКУВАННЯ ВНУТРШ</td>
+						<td></td>
+						<td>
+							<div class="events_item-block"><a class="events_item" href=""><i
+										class="fas fa-trash-restore-alt"></i></a><a class="events_item"
+									href="update_events.html"><i class="fas fa-pencil-alt"></i></a></div>
+						</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>МІЖНАРОДНИЙ САМІТ СУЧАСНИХ ПІДХОДІВ ЛІКУВАННЯ ВНУТРШ</td>
+						<td>sadasd</i></a></td>
+						<td>
+							<div class="events_item-block"><a class="events_item" href=""><i
+										class="fas fa-trash-restore-alt"></i></a><a class="events_item"
+									href="update_events.html"><i class="fas fa-pencil-alt"></i></a></div>
+						</td>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="back_btn t" onclick="$('#exampleModal1').arcticmodal();">Добавить нового партнера</button>
+		</div>
+	</main>
+	<footer class="footer">
+		<div class="footer-box">
+			<p>
+				@ 2021
+			</p>
+		</div>
+	</footer>
+	<div style="display: none;">
+		<div class="box-modal" id="exampleModal1">
+			<div class="box-modal_close arcticmodal-close"><span class="castom-x"></span></div>
+			<div class="popUp">
+				<div class="header2">
+
+					<h2>Добавить нового партнера</h2>
+					<button>ДОДАТИ</button>
+				</div>
+				<div class="boxes2">
+					<fieldset>
+						<legend>Назва партнера *</legend>
+						<input type="text" class="profile_input" required>
+					</fieldset>
+					<fieldset>
+						<legend>Посылання на партнера *</legend>
+						<input type="text" class="profile_input" required>
+					</fieldset>
+					<fieldset>
+						<legend>Порядок *</legend>
+						<input type="text" class="profile_input" required>
+					</fieldset>
+					<p class="dropzone_title">Логотип партнера</p>
+					<form class="dropzone dz-clickable dropzone_event" action="upload.php"
+						enctype='multipart/form-data'>
+						<div class="cloud_dropzone">
+							<i class="fa fa-cloud-upload element"></i>
+						</div>
+						<input type="hidden" name="filenameEmail" class="filenameEmail" value="">
+						<input type="hidden" name="side" value="front">
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.0/dropzone.js"></script>
+	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+	<script>tinymce.init({ selector: 'textarea' });</script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+	<script src="js/script.min.js"></script>
+</body>
+
+</html>

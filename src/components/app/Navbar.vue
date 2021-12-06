@@ -1,0 +1,79 @@
+<template>
+  <header class="header" :class="{ open: isOpen }">
+    <div class="top-menu">
+      <div class="top-menu_left">
+        <div class="burger" @click.prevent="$emit('click-my')">
+          <span></span>
+        </div>
+        <h1 class="top-menu_name">Події</h1>
+      </div>
+      <div class="top-menu_right">
+        <router-link to="/" class="top-menu_home">
+          <i class="fas fa-home"></i>
+        </router-link>
+        <div class="top-menu_right_name_item" >
+          <p class="top-menu_right_name" data-target="dropdown"
+             ref="dropdown">Євген Волков</p>
+          <i class="fas fa-chevron-down">
+          </i>
+          <div id="dropdown" class="dropdown-content dropdown-menu">
+            <router-link to="/lc-profile" class="black-text p_header">
+              <p>Мій профіль</p>
+            </router-link>
+            <div class="p_header" @click.prevent="logout">
+              <p>Вихід</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</template>
+<script>
+export default {
+  props: {
+    isOpen: {
+      type: Boolean
+    }
+  },
+  methods: {
+    async logout () {
+      this.$store.dispatch('logout')
+        .then(() => {
+          this.$router.push('/in-login?message=logout')
+        })
+      // await this.$store.dispatch('logout')
+      // this.$router.push('/in-login?message=logout')
+    },
+  },
+  mounted () {
+    M.Dropdown.init(this.$refs.dropdown, {
+      constrainWidth: true,
+    })
+  },
+}
+</script>
+<style scoped src="@/assets/lc/css/style.min.css">
+</style>
+<style>
+.main-lc header.header.open {
+  width: calc(100% - 239px);
+  margin-left: 239px;
+}
+
+.main-lc header.header {
+  max-width: 100%;
+  width: 100%;
+  margin-left: 0;
+  transition: all 0.3s ease;
+}
+
+.main-lc header.header.open .burger {
+  display: none;
+}
+
+.main-lc header.header .burger {
+  display: block;
+}
+
+</style>

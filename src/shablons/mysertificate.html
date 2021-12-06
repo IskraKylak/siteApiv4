@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css" />
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+	<title>Сертификаты</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="top-menu">
+			<div class="top-menu_left">
+				<div class="burger">
+					<span></span>
+				</div>
+				<h1 class="top-menu_name">Мої сертифікати</h1>
+			</div>
+			<div class="top-menu_right">
+				<a href="#" class="top-menu_home">
+					<i class="fas fa-home"></i>
+				</a>
+				<div class="top-menu_right_name_item">
+					<p class="top-menu_right_name">Євген Волков</p>
+					<i class="fas fa-chevron-down">
+					</i>
+					<div class="dropdown-menu">
+						<div class="p_header">
+							<p>Мій профіль</p>
+						</div>
+						<div class="p_header">
+							<p>Вихід</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="sidebar">
+		<div class="sidebar-top">
+			<div class="sidebar_arrow">
+				<i class="fas fa-chevron-left"></i>
+			</div>
+			<div class="sidebar-top_line line"></div>
+		</div>
+		<div class="sidebar-center">
+			<a href="index.html" class="sidebar-center_item sidebar_text">
+				<i class="fas fa-address-book"></i>
+				<div>Мій профіль</div>
+			</a>
+			<!-- <div class="sidebar-center_item sidebar_text">
+            <i class="fab fa-redhat"></i>
+            Мої курси
+        </div> -->
+			<a href="mysertificate.html" class="sidebar-center_item sidebar_text">
+				<i class="fas fa-trophy"></i>
+				<div>Мої сертифікати</div>
+			</a>
+		</div>
+
+		<!-- <div class="block_sidebar_bottom sidebar_text">
+        <div class="left_sidebar">
+            <i class="fab fa-redhat"></i>
+            <i class="fas fa-tv"></i>
+        </div>
+        <div class="right_sidebar">
+            <a href="mycabinet.html">Мій кабінет</a>
+            <a href="mysertificate.html">Мої сертифікати</a>
+        </div>
+    </div> -->
+
+
+
+		<div class="sidebar-center_line line"></div>
+		<div class="sidebar-bottom">
+			<p class="sidebar-bottom_title">Керування</p>
+			<!-- <a href="update_course.html" class="sidebar-center_item sidebar_text">
+			<i class="fab fa-redhat"></i>
+			<div>Курс</div>
+		</a> -->
+			<a href="events.html" class="sidebar-center_item sidebar_text">
+				<i class="fas fa-calendar-day"></i>
+				<div>Події</div>
+			</a>
+			<a href="users.html" class="sidebar-center_item sidebar_text">
+				<i class="fas fa-user-friends"></i>
+				<div>Користувачі</div>
+			</a>
+			<a href="static.html" class="sidebar-center_item sidebar_text">
+				<i class="fas fa-signal"></i>
+				<div>Статистика</div>
+			</a>
+		</div>
+
+		<!-- <div class="sidebar-bottom">
+        <p class="sidebar-bottom_title">Керування</p>
+        <div class="block_sidebar_bottom sidebar_text">
+            <div class="left_sidebar">
+                <i class="fas fa-calendar-day"></i>
+                <i class="fas fa-user-friends"></i>
+                <i class="fas fa-signal"></i>
+            </div>
+            <div class="right_sidebar">
+                <a href="events.html">Події</a>
+                <a href="users.html">Користувачі</a>
+                <a href="static.html">Статистика</a>
+            </div>
+        </div>
+    </div> -->
+	</div>
+	<main class="main">
+		<div class="container">
+			<div class="table_sertificate table_cust">
+				<div class="table_wrapper">
+					<div class="title_table">
+						<h1>Курси</h1>
+					</div>
+					<div class="sub_title">
+						<p class="sertificate_sub_title_text1">Назва</p>
+						<p class="sertificate_sub_title_text2">Дата</p>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Хвороба Кавасакі</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Пневмонія</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Артеріальна гіпертензія</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">ХОЗЛ</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Лікування гострого респіраторного дистрес-синдрому</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Псоріаз</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Есенціальний тремор</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Алкогольна хвороба печінки</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Алергічний риніт</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Сучасні можливості ранньої діагностики порушень рефракції та
+								акомодації</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Проведення трансторакальної пункційної біопсії під контролем
+								комп’ютерної томографії (КТ) в режимі реального часу</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Лікування та профілактика аритмій в умовах пандемії COVID‑19</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Дитина перших 2 місяців життя: коліки</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Інфекційна діарея у дітей та підлітків</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="table_sertificate table_cust">
+				<div class="table_wrapper">
+					<div class="title_table">
+						<h1>Вебінари</h1>
+					</div>
+					<div class="sub_title">
+						<p>Назва</p>
+						<p class="sertificate_sub_title_text2">Дата</p>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Хвороба Кавасакі</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Пневмонія</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Артеріальна гіпертензія</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">ХОЗЛ</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Лікування гострого респіраторного дистрес-синдрому</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Псоріаз</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Есенціальний тремор</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Алкогольна хвороба печінки</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Алергічний риніт</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Сучасні можливості ранньої діагностики порушень рефракції та
+								акомодації</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Проведення трансторакальної пункційної біопсії під контролем
+								комп’ютерної томографії (КТ) в режимі реального часу</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Лікування та профілактика аритмій в умовах пандемії COVID‑19</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Дитина перших 2 місяців життя: коліки</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+					<div class="table_content">
+						<div class="left_content">
+							<h3 class="title_content">Інфекційна діарея у дітей та підлітків</h3>
+						</div>
+						<div class="right_content">
+							<button class="download_btn" type="">Завантажити</button>
+							<p class="date_content">25 лютого 2021</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</main>
+	<footer class="footer">
+		<div class="footer-box">
+			<p>
+				@ 2021
+			</p>
+		</div>
+	</footer>
+	<div style="display: none;">
+		<div class="box-modal" id="exampleModal1">
+			<div class="box-modal_close arcticmodal-close"><span class="castom-x"></span></div>
+			<div class="popUp">
+				<div class="header2">
+
+					<h2>Добавить нового партнера</h2>
+					<button>ДОДАТИ</button>
+				</div>
+				<div class="boxes2">
+					<fieldset>
+						<legend>Назва партнера *</legend>
+						<input type="text" class="profile_input" required>
+					</fieldset>
+					<fieldset>
+						<legend>Посылання на партнера *</legend>
+						<input type="text" class="profile_input" required>
+					</fieldset>
+					<fieldset>
+						<legend>Порядок *</legend>
+						<input type="text" class="profile_input" required>
+					</fieldset>
+					<p class="dropzone_title">Логотип партнера</p>
+					<form class="dropzone dz-clickable dropzone_event" action="upload.php"
+						enctype='multipart/form-data'>
+						<div class="cloud_dropzone">
+							<i class="fa fa-cloud-upload element"></i>
+						</div>
+						<input type="hidden" name="filenameEmail" class="filenameEmail" value="">
+						<input type="hidden" name="side" value="front">
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+	<script src="js/script.min.js"></script>
+</body>
+
+</html>
