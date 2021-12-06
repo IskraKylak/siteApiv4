@@ -1,5 +1,6 @@
 <template>
   <div class="wrap_table_component">
+    {{ info }}
     <div class="wrap_search">
       <input type="search" class="input px:width-25" placeholder="Пошук" v-model="searchInput"
              @keyup="searchEvent">
@@ -7,34 +8,36 @@
 
     <div class="wrap_table">
       <div class="table table_event">
-      <div class="thead">
-        <div class="tr">
-          <div class="th" v-for="th in columns" :key="th">
-            <div>
-              <span @click.prevent="sortByColumn(th.name)">{{ th.text }}</span>
+        <div class="thead">
+          <div class="tr">
+            <div class="th" v-for="th in columns" :key="th">
+              <div>
+                <span @click.prevent="sortByColumn(th.name)">{{ th.text }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tbody">
+          <div class="tr" v-for="td in filteredEntries" :key="td">
+            <div class="td">{{ td.id }}</div>
+            <div class="td">{{ td.name }}</div>
+            <div class="td">{{ td.start_date }}</div>
+            <div class="td">{{ td.place }}</div>
+            <div class="td">
+              <router-link to="/lc-updateevents" class="icon_svg_table icon_svg_table_edit">
+                <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
+                </svg>
+              </router-link>
+              <span class="icon_svg_table icon_svg_table_remove">
+            <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path
+              d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+          </span>
             </div>
           </div>
         </div>
       </div>
-      <div class="tbody">
-        <div class="tr" v-for="td in filteredEntries" :key="td">
-          <div class="td">{{ td.id }}</div>
-          <div class="td">{{ td.name }}</div>
-          <div class="td">{{ td.date }}</div>
-          <div class="td">{{ td.office }}</div>
-          <div class="td">
-          <router-link to="/lc-updateevents" class="icon_svg_table icon_svg_table_edit">
-            <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path
-              d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
-          </router-link>
-            <span class="icon_svg_table icon_svg_table_remove">
-            <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path
-              d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
-          </span>
-          </div>
-        </div>
-      </div>
-    </div>
       <div class="table_foot">
         <div class="table_length">
           Total Rows: {{ entries.length }}
@@ -53,53 +56,59 @@
             <span :class="['nav-item', { 'disabled': currentPage === 1 }]">
               <a href="#" class="nav-link"
                  @click.prevent="(currentPage < 1) ? currentPage = 1 : currentPage -= 1, paginateEntries()">
-                <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"></path></svg>
+                <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path
+                  d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"></path></svg>
               </a>
             </span>
             <span :class="['nav-item', { 'disabled': currentPage === allPages }]">
               <a href="#" class="nav-link"
                  @click.prevent="(currentPage > allPages) ? currentPage = allPages : currentPage += 1, paginateEntries()">
-                <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg>
+                <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path
+                  d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path></svg>
               </a>
             </span>
           </div>
         </div>
-        </div>
       </div>
-<!--      <div class="between:flex y:margin-3">-->
-
-<!--        <div class="end:flex center:items">-->
-<!--          <ul class="pagination:nav">-->
-<!--            <li :class="['nav-item', { 'disabled': currentPage === 1 }]">-->
-<!--              <a href="#" class="nav-link" @click.prevent="currentPage = 1, paginateEntries()">First</a>-->
-<!--            </li>-->
-<!--            <li :class="['nav-item', { 'disabled': currentPage === 1 }]">-->
-<!--              <a href="#" class="nav-link"-->
-<!--                 @click.prevent="(currentPage < 1) ? currentPage = 1 : currentPage -= 1, paginateEntries()">Prev</a>-->
-<!--            </li>-->
-<!--            <li v-for="pagi in showPagination" :key="pagi"-->
-<!--                :class="['nav-item', {'ellipsis': pagi === '...', 'active': pagi === currentPage}]">-->
-<!--              <a href="#" class="nav-link" @click.prevent="paginateEvent(pagi)">{{ pagi }}</a>-->
-<!--            </li>-->
-<!--            <li :class="['nav-item', { 'disabled': currentPage === allPages }]">-->
-<!--              <a href="#" class="nav-link"-->
-<!--                 @click.prevent="(currentPage > allPages) ? currentPage = allPages : currentPage += 1, paginateEntries()">Next</a>-->
-<!--            </li>-->
-<!--            <li :class="['nav-item', { 'disabled': currentPage === allPages }]">-->
-<!--              <a href="#" class="nav-link" @click.prevent="currentPage = allPages, paginateEntries()">Last</a>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
+    <!--      <div class="between:flex y:margin-3">-->
+
+    <!--        <div class="end:flex center:items">-->
+    <!--          <ul class="pagination:nav">-->
+    <!--            <li :class="['nav-item', { 'disabled': currentPage === 1 }]">-->
+    <!--              <a href="#" class="nav-link" @click.prevent="currentPage = 1, paginateEntries()">First</a>-->
+    <!--            </li>-->
+    <!--            <li :class="['nav-item', { 'disabled': currentPage === 1 }]">-->
+    <!--              <a href="#" class="nav-link"-->
+    <!--                 @click.prevent="(currentPage < 1) ? currentPage = 1 : currentPage -= 1, paginateEntries()">Prev</a>-->
+    <!--            </li>-->
+    <!--            <li v-for="pagi in showPagination" :key="pagi"-->
+    <!--                :class="['nav-item', {'ellipsis': pagi === '...', 'active': pagi === currentPage}]">-->
+    <!--              <a href="#" class="nav-link" @click.prevent="paginateEvent(pagi)">{{ pagi }}</a>-->
+    <!--            </li>-->
+    <!--            <li :class="['nav-item', { 'disabled': currentPage === allPages }]">-->
+    <!--              <a href="#" class="nav-link"-->
+    <!--                 @click.prevent="(currentPage > allPages) ? currentPage = allPages : currentPage += 1, paginateEntries()">Next</a>-->
+    <!--            </li>-->
+    <!--            <li :class="['nav-item', { 'disabled': currentPage === allPages }]">-->
+    <!--              <a href="#" class="nav-link" @click.prevent="currentPage = allPages, paginateEntries()">Last</a>-->
+    <!--            </li>-->
+    <!--          </ul>-->
+    <!--        </div>-->
+    <!--      </div>-->
+  </div>
 </template>
 <script>
 import { $array } from 'alga-js'
+
+import axios from 'axios'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'DataTable',
   data () {
     return {
+      loading: false,
       columns: [
         {
           name: 'id',
@@ -146,7 +155,13 @@ export default {
       }
     }
   },
+  // async mounted () {
+  //   await this.getNotify()
+  // },
   computed: {
+    info () {
+      return this.$store.getters.getEventsApi
+    },
     showInfo () {
       const getCurrentEntries = (this.searchEntries.length <= 0) ? this.entries : this.searchEntries
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
@@ -155,95 +170,44 @@ export default {
     },
     showPagination () {
       return $array.pagination(this.allPages, this.currentPage, 3)
-    }
+    },
+    // entries () {
+    //   return this.$store.getters.getMessage
+    // }
   },
   created () {
-    const res = [
-      {
-        id: 1,
-        name: 'Семінар «Клінічні рекомендації в загальній практиці сімейного лікаря, терапевта»',
-        date: '07.10.2020, 0:00',
-        office: ''
-      },
-      {
-        id: 2,
-        name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
-        date: '04.11.2015, 0:00',
-        office: ''
-      },
-      {
-        id: 3,
-        name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
-        date: '23.04.2015, 0:00',
-        office: ''
-      },
-      {
-        id: 4,
-        name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
-        date: '04.11.2015, 0:00',
-        office: ''
-      },
-      {
-        id: 5,
-        name: 'Семінар «Клінічні рекомендації в загальній практиці сімейного лікаря, терапевта»',
-        date: '07.10.2020, 0:00',
-        office: ''
-      },
-      {
-        id: 6,
-        name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
-        date: '04.11.2015, 0:00',
-        office: ''
-      },
-      {
-        id: 7,
-        name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
-        date: '23.04.2015, 0:00',
-        office: ''
-      },
-      {
-        id: 8,
-        name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
-        date: '04.11.2015, 0:00',
-        office: ''
-      },
-      {
-        id: 9,
-        name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
-        date: '04.11.2015, 0:00',
-        office: ''
-      },
-      {
-        id: 10,
-        name: 'Семінар «Клінічні рекомендації в загальній практиці сімейного лікаря, терапевта»',
-        date: '07.10.2020, 0:00',
-        office: ''
-      },
-      {
-        id: 11,
-        name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
-        date: '04.11.2015, 0:00',
-        office: ''
-      },
-      {
-        id: 12,
-        name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
-        date: '23.04.2015, 0:00',
-        office: ''
-      },
-      {
-        id: 13,
-        name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
-        date: '04.11.2015, 0:00',
-        office: ''
-      }
-    ]
-    this.entries = res
-    // this.paginateData(this.entries)
-    this.filteredEntries = $array.paginate(this.entries, this.currentPage, this.currentEntries)
-    this.allPages = $array.pages(this.entries, this.currentEntries)
+    //   {
+    //     id: 13,
+    //     name: 'Семінар «АКТУАЛЬНІ ПИТАННЯ СІМЕЙНОЇ МЕДИЦИНИ В УКРАЇНІ»',
+    //     date: '04.11.2015, 0:00',
+    //     office: ''
+    //   }
+    // ]
+    this.getNotify()
+    console.log(this.$store.getters.getEventsApi)
   },
   methods: {
+    async getNotify () {
+      this.loading = true
+      if (this.entries.length === 0) {
+        await axios
+          .get('https://asprof-test.azurewebsites.net/api/events/?format=json')
+          .then(respons => {
+            let res = respons.data
+            this.$store.dispatch('setMessage', res)
+            // this.messages = res;
+            console.log(res)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+          .finally(() => (this.loading = false))
+      }
+      this.entries = this.$store.getters.getMessage
+      // this.paginateData(this.entries)
+      this.filteredEntries = $array.paginate(this.entries, this.currentPage, this.currentEntries)
+      this.allPages = $array.pages(this.entries, this.currentEntries)
+    },
     paginateEntries () {
       if (this.searchInput.length >= 3) {
         this.searchEntries = $array.search(this.entries, this.searchInput)

@@ -367,21 +367,26 @@ export default {
     onSubmit () {
       this.v$.$touch()
       if (!this.v$.$invalid) {
-        const user = {
-          last_name: this.surname,
-          first_name: this.name,
-          patronymic: this.middleName,
-          region: this.regions,
-          town: this.locality,
-          specialization: this.speciality,
-          job_place: this.work,
-          job_name: this.position,
+        const user1 = {
           email: this.email,
+          password: this.password1,
+          first_name: this.name,
+          last_name: this.surname,
+          patronymic: this.middleName,
           phone: this.tel,
-          password: this.password1
+          work_phone: "",
+          birth_date: null,
+          region: this.selectedRegions,
+          town: this.locality,
+          start_activity_date: null,
+          college: "",
+          diploma: "",
+          job_place: this.work,
+          job_name: this.selectedSpeciality,
+          specialization: null
         }
-        console.log(user)
-        this.$store.dispatch('register', user)
+        console.log(user1)
+        this.$store.dispatch('register', user1)
           .then(() => this.$router.push('/lc-profile'))
           .catch(err => console.log(err))
         // this.name = ''

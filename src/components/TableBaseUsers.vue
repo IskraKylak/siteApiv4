@@ -25,10 +25,12 @@
             <div class="td">{{ td.tel }}</div>
             <div class="td">{{ td.email }}</div>
             <div class="td">
-            <router-link to="/lc-updateuser" class="icon_svg_table icon_svg_table_edit">
-              <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path
-              d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
-            </router-link>
+              <router-link to="/lc-updateuser" class="icon_svg_table icon_svg_table_edit">
+                <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
+                </svg>
+              </router-link>
               <span class="icon_svg_table icon_svg_table_remove">
             <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path
               d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
@@ -99,6 +101,7 @@
 </template>
 <script>
 import { $array } from 'alga-js'
+import axios from 'axios'
 
 export default {
   name: 'DataTable',
@@ -174,126 +177,35 @@ export default {
     }
   },
   created () {
-    const res = [
-      {
-        id: 1,
-        name: 'Шулерова Ольга Миколаївна',
-        specialty: 'Невролог',
-        date: '',
-        tel: '(066) 383-6550',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 2,
-        name: 'Комарова Надiя Вiкторiвна',
-        specialty: 'Гастроентеролог',
-        date: '',
-        tel: '(050) 534-8638',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 3,
-        name: 'Київський Дмитро Леонідович',
-        specialty: 'Терапевт',
-        date: '',
-        tel: '(098) 413-5420',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 4,
-        name: 'Гелетей Віра Михайлівна',
-        specialty: 'Радіолог',
-        date: '',
-        tel: '(096) 320-7803',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 5,
-        name: 'Шулерова Ольга Миколаївна',
-        specialty: 'Невролог',
-        date: '',
-        tel: '(066) 383-6550',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 6,
-        name: 'Комарова Надiя Вiкторiвна',
-        specialty: 'Гастроентеролог',
-        date: '',
-        tel: '(050) 534-8638',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 7,
-        name: 'Київський Дмитро Леонідович',
-        specialty: 'Терапевт',
-        date: '',
-        tel: '(098) 413-5420',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 8,
-        name: 'Гелетей Віра Михайлівна',
-        specialty: 'Радіолог',
-        date: '',
-        tel: '(096) 320-7803',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 9,
-        name: 'Київський Дмитро Леонідович',
-        specialty: 'Терапевт',
-        date: '',
-        tel: '(098) 413-5420',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 10,
-        name: 'Гелетей Віра Михайлівна',
-        specialty: 'Радіолог',
-        date: '',
-        tel: '(096) 320-7803',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 11,
-        name: 'Шулерова Ольга Миколаївна',
-        specialty: 'Невролог',
-        date: '',
-        tel: '(066) 383-6550',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 12,
-        name: 'Комарова Надiя Вiкторiвна',
-        specialty: 'Гастроентеролог',
-        date: '',
-        tel: '(050) 534-8638',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 13,
-        name: 'Київський Дмитро Леонідович',
-        specialty: 'Терапевт',
-        date: '',
-        tel: '(098) 413-5420',
-        email: 'salijmariavasylivna@gmail.com',
-      },
-      {
-        id: 14,
-        name: 'Гелетей Віра Михайлівна',
-        specialty: 'Радіолог',
-        date: '',
-        tel: '(096) 320-7803',
-        email: 'salijmariavasylivna@gmail.com',
-      }
-    ]
-    this.entries = res
-    // this.paginateData(this.entries)
-    this.filteredEntries = $array.paginate(this.entries, this.currentPage, this.currentEntries)
-    this.allPages = $array.pages(this.entries, this.currentEntries)
+    this.getNotify()
   },
   methods: {
+    async getNotify () {
+      this.loading = true
+      await axios({
+        method: 'GET',
+        url: ('http://asprof-test.azurewebsites.net/api/users/?format=json'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ' + this.$store.getters.getToken
+        },
+        json: true
+      }).then(respons => {
+        let res = respons.data
+        this.$store.dispatch('setMessage', res)
+        // this.messages = res;
+        console.log(res)
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .finally(() => (this.loading = false))
+      console.log(this.$store.getters.getUsers)
+      this.entries = []
+      // this.paginateData(this.entries)
+      this.filteredEntries = $array.paginate(this.entries, this.currentPage, this.currentEntries)
+      this.allPages = $array.pages(this.entries, this.currentEntries)
+    },
     paginateEntries () {
       if (this.searchInput.length >= 3) {
         this.searchEntries = $array.search(this.entries, this.searchInput)
