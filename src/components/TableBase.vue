@@ -184,7 +184,7 @@ export default {
     //   }
     // ]
     this.getNotify()
-    console.log(this.$store.getters.getEventsApi)
+    // console.log(this.$store.getters.getEventsApi)
   },
   methods: {
     async getNotify () {
@@ -196,7 +196,7 @@ export default {
             let res = respons.data
             this.$store.dispatch('setMessage', res)
             // this.messages = res;
-            console.log(res)
+            // console.log("res event " + res)
           })
           .catch(error => {
             console.log(error)

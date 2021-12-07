@@ -15,9 +15,12 @@
           </div>
         </router-link>
         <div class="box_callback">
-          <div class="box_enter">
+          <div class="box_enter" v-if="tokkent === ''">
             <router-link class="link" to="/in-login">Вхід</router-link>
             <router-link class="link" to="/register">Реєстрація</router-link>
+          </div>
+          <div class="box_enter" v-else>
+            <router-link class="link" to="/lc-profile">{{ myAcc.email }}</router-link>
           </div>
           <div class="box_messendger">
             <a class="link_facebook" href="https://www.facebook.com/"
@@ -87,5 +90,46 @@
     </div>
   </header>
 </template>
+<script>
+
+import axios from "axios";
+import {$array} from "alga-js";
+
+export default {
+  data () {
+    return {
+      myAcc: []
+    }
+  },
+  computed: {
+    tokkent() {
+      return this.$store.getters.getToken
+    }
+  },
+  created () {
+    this.getNotify()
+  },
+  methods: {
+    async getNotify() {
+      await axios({
+        method: 'GET',
+        url: ('https://asprof-test.azurewebsites.net/api/me/'),
+        headers: {
+          'Authorization': 'Bearer ' + this.$store.getters.getToken
+        }
+      }).then(respons => {
+        let res = respons.data
+        this.$store.dispatch('setMyAcc', res)
+        // this.messages = res;
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .finally(() => (this.loading = false))
+      this.myAcc = this.$store.getters.getMyAcc
+    }
+  }
+}
+</script>
 <style scoped src="@/assets/css/screen.css" >
 </style>

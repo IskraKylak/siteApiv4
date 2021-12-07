@@ -20,8 +20,8 @@
           <div class="tr" v-for="td in filteredEntries" :key="td">
             <div class="td">{{ td.id }}</div>
             <div class="td">{{ td.name }}</div>
-            <div class="td">{{ td.passages }}</div>
-            <div class="td">{{ td.sertuficat }}</div>
+            <div class="td">{{ td.pass_counter }}</div>
+            <div class="td">{{ td.certificates_count }}</div>
             <div class="td">
             <span class="icon_svg_table icon_svg_table_edit">
               <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path
@@ -68,6 +68,7 @@
 </template>
 <script>
 import { $array } from 'alga-js'
+import axios from "axios";
 
 export default {
   name: 'DataTableStatisticCurses',
@@ -129,20 +130,31 @@ export default {
     }
   },
   created () {
-    const res = [
-      {
-        id: 1,
-        name: 'Кір - деякі епідеміологічні аспекти',
-        passages: '12',
-        sertuficat: '7'
-      }
-    ]
-    this.entries = res
-    // this.paginateData(this.entries)
-    this.filteredEntries = $array.paginate(this.entries, this.currentPage, this.currentEntries)
-    this.allPages = $array.pages(this.entries, this.currentEntries)
+    this.getNotify()
   },
   methods: {
+    async getNotify () {
+      this.loading = true
+      await axios({
+        method: 'GET',
+        url: ('https://asprof-test.azurewebsites.net/api/statistics/courses/summary/'),
+        headers: {
+          'Authorization': 'Bearer ' + this.$store.getters.getToken
+        }
+      }).then(respons => {
+        let res = respons.data
+        this.$store.dispatch('setStatCurs', res)
+        // this.messages = res;
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .finally(() => (this.loading = false))
+      this.entries = this.$store.getters.getStatCurs
+      // this.paginateData(this.entries)
+      this.filteredEntries = $array.paginate(this.entries, this.currentPage, this.currentEntries)
+      this.allPages = $array.pages(this.entries, this.currentEntries)
+    },
     paginateEntries () {
       if (this.searchInput.length >= 3) {
         this.searchEntries = $array.search(this.entries, this.searchInput)

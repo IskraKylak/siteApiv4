@@ -13,7 +13,7 @@
         </router-link>
         <div class="top-menu_right_name_item" >
           <p class="top-menu_right_name" data-target="dropdown"
-             ref="dropdown">Євген Волков</p>
+             ref="dropdown">{{ myAcc.email }}</p>
           <i class="fas fa-chevron-down">
           </i>
           <div id="dropdown" class="dropdown-content dropdown-menu">
@@ -30,13 +30,41 @@
   </header>
 </template>
 <script>
+import axios from "axios";
+
 export default {
+  data () {
+    return {
+      myAcc: []
+    }
+  },
   props: {
     isOpen: {
       type: Boolean
     }
   },
+  created () {
+    this.getNotify()
+  },
   methods: {
+    async getNotify() {
+      await axios({
+        method: 'GET',
+        url: ('https://asprof-test.azurewebsites.net/api/me/'),
+        headers: {
+          'Authorization': 'Bearer ' + this.$store.getters.getToken
+        }
+      }).then(respons => {
+        let res = respons.data
+        this.$store.dispatch('setMyAcc', res)
+        // this.messages = res;
+      })
+        .catch(error => {
+          console.log(error)
+        })
+        .finally(() => (this.loading = false))
+      this.myAcc = this.$store.getters.getMyAcc
+    },
     async logout () {
       this.$store.dispatch('logout')
         .then(() => {
@@ -50,12 +78,18 @@ export default {
     M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: true,
     })
-  },
+  }
 }
 </script>
 <style scoped src="@/assets/lc/css/style.min.css">
 </style>
 <style>
+p.top-menu_right_name {
+  min-width: 10px;
+  height: 10px;
+}
+
+
 .main-lc header.header.open {
   width: calc(100% - 239px);
   margin-left: 239px;

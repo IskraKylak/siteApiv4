@@ -1,22 +1,22 @@
 export default {
   state: {
-    users: [],
+    statCurse: [],
   },
   mutations: {
-    setUsers(state, payload) {
-      state.users = payload
+    setStatCurs(state, payload) {
+      state.statCurse = payload
     },
 
   },
   actions: {
-    setUsers ({commit}, payload) {
+    setStatCurs ({commit}, payload) {
       // обратимся к нашему комиту и візовем мутацию setNotify в кторую передадим payload
-      commit('setUsers', payload)
+      commit('setStatCurs', payload)
     }
   },
   getters: {
-    getUsers (state) {
-      return state.users
+    getStatCurs (state) {
+      return state.statCurse
     },
   },
   modules: {

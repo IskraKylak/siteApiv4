@@ -19,10 +19,10 @@
         <div class="tbody">
           <div class="tr" v-for="td in filteredEntries" :key="td">
             <div class="td">{{ td.id }}</div>
-            <div class="td">{{ td.name }}</div>
-            <div class="td">{{ td.specialty }}</div>
-            <div class="td">{{ td.date }}</div>
-            <div class="td">{{ td.tel }}</div>
+            <div class="td">{{ td.full_name }}</div>
+            <div class="td">{{ td.job_name }}</div>
+            <div class="td">{{ td.start_activity_date }}</div>
+            <div class="td">{{ td.phone }}</div>
             <div class="td">{{ td.email }}</div>
             <div class="td">
               <router-link to="/lc-updateuser" class="icon_svg_table icon_svg_table_edit">
@@ -166,6 +166,9 @@ export default {
     }
   },
   computed: {
+    // info () {
+    //   return this.$store.getters.getEventsApi
+    // },
     showInfo () {
       const getCurrentEntries = (this.searchEntries.length <= 0) ? this.entries : this.searchEntries
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
@@ -178,30 +181,27 @@ export default {
   },
   created () {
     this.getNotify()
+    console.log(this.$store.getters.getEventsApi)
   },
   methods: {
     async getNotify () {
       this.loading = true
       await axios({
         method: 'GET',
-        url: ('http://asprof-test.azurewebsites.net/api/users/?format=json'),
+        url: ('https://asprof-test.azurewebsites.net/api/users/'),
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Token ' + this.$store.getters.getToken
-        },
-        json: true
+          'Authorization': 'Bearer ' + this.$store.getters.getToken
+        }
       }).then(respons => {
         let res = respons.data
-        this.$store.dispatch('setMessage', res)
+        this.$store.dispatch('setUsers', res)
         // this.messages = res;
-        console.log(res)
       })
         .catch(error => {
           console.log(error)
         })
         .finally(() => (this.loading = false))
-      console.log(this.$store.getters.getUsers)
-      this.entries = []
+      this.entries = this.$store.getters.getUsers
       // this.paginateData(this.entries)
       this.filteredEntries = $array.paginate(this.entries, this.currentPage, this.currentEntries)
       this.allPages = $array.pages(this.entries, this.currentEntries)

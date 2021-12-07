@@ -3,11 +3,11 @@ import axios from 'axios'
 export default {
   state: {
     status: '',
-    token: localStorage.getItem('token') || ''
-    // user : {}
+    token: localStorage.getItem('token') || '',
+    user: localStorage.getItem('user') || ''
   },
   actions: {
-    login ({ commit }, user) {
+    login({commit}, user) {
       return new Promise((resolve, reject) => {
         commit('auth_request')
         console.log(user)
@@ -17,12 +17,18 @@ export default {
           method: 'POST'
         })
           .then(resp => {
-            const token = resp.data.refresh
-            console.log(token)
-            const user = resp.data.user
+            const user = resp.data.refresh
+            const token = resp.data.access
+
+            console.log('auth token-access:' + token)
+            console.log('auth refresh: ' + user)
+
             localStorage.setItem('token', token)
+            localStorage.setItem('user', user)
+
             axios.defaults.headers.common['Authorization'] = token
-            commit('auth_success', token, user)
+
+            commit('auth_success', {token, user})
             resolve(resp)
           })
           .catch(err => {
@@ -32,7 +38,7 @@ export default {
           })
       })
     },
-    register ({ commit }, user) {
+    register({commit}, user) {
       return new Promise((resolve, reject) => {
         commit('auth_request')
         axios({
@@ -41,11 +47,15 @@ export default {
           method: 'POST'
         })
           .then(resp => {
-            const token = resp.data.token
-            const user = resp.data.user
+            const user = resp.data.refresh
+            const token = resp.data.access
+
             localStorage.setItem('token', token)
+            localStorage.setItem('user', user)
+
             axios.defaults.headers.common['Authorization'] = token
-            commit('auth_success', token, user)
+
+            commit('auth_success', {token, user})
             resolve(resp)
           })
           .catch(err => {
@@ -55,7 +65,7 @@ export default {
           })
       })
     },
-    logout ({ commit }) {
+    logout({commit}) {
       return new Promise((resolve, reject) => {
         commit('logout')
         localStorage.removeItem('token')
@@ -65,26 +75,34 @@ export default {
     }
   },
   mutations: {
-    auth_request (state) {
+    auth_request(state) {
       state.status = 'loading'
     },
-    auth_success (state, token, user) {
+    auth_success(state, obj) {
       state.status = 'success'
-      console.log(token)
-      state.token = token
-      state.user = user
+      console.log('auth_success token-access: ' + obj.token)
+      console.log('auth_success refresh: ' + obj.user)
+      state.token = obj.token
+      state.user = obj.user
     },
-    auth_error (state) {
+    auth_error(state) {
       state.status = 'error'
     },
-    logout (state) {
+    logout(state) {
       state.status = ''
       state.token = ''
+      state.user = ''
     },
   },
   getters: {
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
+    getToken(state) {
+      return state.token
+    },
+    getAcs(state) {
+      return state.user
+    }
   }
   // async logout () {
   //   await signOut(auth).then(() => {

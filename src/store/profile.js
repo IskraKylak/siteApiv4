@@ -1,22 +1,22 @@
 export default {
   state: {
-    users: [],
+    myacc: [],
   },
   mutations: {
-    setUsers(state, payload) {
-      state.users = payload
+    setMyAcc(state, payload) {
+      state.myacc = payload
     },
 
   },
   actions: {
-    setUsers ({commit}, payload) {
+    setMyAcc ({commit}, payload) {
       // обратимся к нашему комиту и візовем мутацию setNotify в кторую передадим payload
-      commit('setUsers', payload)
+      commit('setMyAcc', payload)
     }
   },
   getters: {
-    getUsers (state) {
-      return state.users
+    getMyAcc (state) {
+      return state.myacc
     },
   },
   modules: {
